@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+    <!-- Basic project information -->
+    <meta title="Platformer Example Made with ChatGPT"
+        package="com.kookerfoxyt.platformergptexample" version="0.1.0" />
+
+    <!--Desktop-->
+    <!--These
+    window settings apply to all targets-->
+    <window width="320" height="240" fps="120" hardware="true" vsync="true" background="0x0052f0f0" />
+
+    <window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false" />
+
+    <!-- Set up the assets directory -->
+    <assets path="assets" />
+
+    <classpath name="source" />
+
+    <set name="BUILD_DIR" value="export/debug" if="debug" />
+    <set name="BUILD_DIR" value="export/release" unless="debug" />
+    <set name="BUILD_DIR" value="export/32bit" if="32bit" />
+
+    <!-- Add required libraries -->
+    <haxelib name="flixel" />
+    <haxelib name="flixel-addons" />
+    <haxelib name="flixel-ui" />
+
+    <haxelib name="lime" />
+    <haxelib name="openfl" />
+    <haxedef name="use_dialogs" />
+
+    <setenv name="next"/>
+
+    <!-- Define additional compiler options for each platform -->
+    <compiler>
+        <flag name="-dce full" if="windows" />
+        <flag name="--macro include('polymod.Macros')" />
+    </compiler>
+
+    <haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
+    <haxedef name="FLX_NO_DEBUG" unless="debug" />
+
+    <haxedef name="HXCPP_GC_BIG_BLOCKS" />
+    <haxedef name="HXCPP_GC_MOVING" />
+    <haxedef name="HXCPP_GC_DYNAMIC_SIZE" />
+
+    <haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+
+</project>
