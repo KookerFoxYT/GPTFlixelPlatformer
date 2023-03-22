@@ -1,8 +1,10 @@
 import flixel.FlxG;
-import flixel.FlxText;
-import flixel.FlxButton;
+import flixel.text.FlxText;
+import flixel.ui.FlxButton;
 import flixel.FlxState;
-import flixel.system.FlxSave;
+import flixel.util.FlxSave;
+
+using StringTools;
 
 class TitleState extends FlxState {
 	private var titleText:FlxText;

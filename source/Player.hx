@@ -4,6 +4,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 
+using StringTools;
+
 class Player extends FlxSprite {
 	var moveSpeed:Float = 120;
 	var jumpSpeed:Float = 200;

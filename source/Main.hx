@@ -1,19 +1,69 @@
-import openfl.display.FPS;
+package;
+
 import flixel.FlxG;
 import flixel.FlxGame;
+import flixel.FlxState;
 import flixel.util.FlxSave;
+import openfl.Lib;
+import openfl.display.FPS;
+import openfl.display.Sprite;
+import openfl.events.Event;
 
-class Main {
-	static function main() {
-		// Initialize the game window and set the resolution to 320x240 pixels
-		FlxG.init(320, 240, 2);
+using StringTools;
 
-		// Create the FlxGame object and add it to the game window
-		var game = new FlxGame(320, 240, new TitleState(), 2, 60, 60, false, false);
-		FlxG.stage.addChild(game);
+class Main extends Sprite {
+	var widthGame:Int = 320; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var heightGame:Int = 240; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
+	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
+	var framerate:Int = 60; // How many frames per second the game should run at.
+	var skipSplash:Bool = false; // Whether to skip the flixel splash screen that appears in release mode.
+	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
-		// Create an FPS counter and add it to the game window
-		var fps = new FPS();
-		FlxG.stage.addChild(fps);
+	public static var fpsVar:FPS;
+
+	// You can pretty much ignore everything from here on - your code should go in your states :)
+
+	public static function main():Void {
+		Lib.current.addChild(new Main());
+	}
+
+	public function new() {
+		super();
+
+		if (stage != null) {
+			init();
+		} else {
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+	}
+
+	private function init(?E:Event):Void {
+		if (hasEventListener(Event.ADDED_TO_STAGE)) {
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+		}
+
+		setupGame();
+	}
+
+	private function setupGame():Void {
+		var stageWidth:Int = Lib.current.stage.stageWidth;
+		var stageHeight:Int = Lib.current.stage.stageHeight;
+
+		if (zoom == -1.0) {
+			var ratioX:Float = stageWidth / width;
+			var ratioY:Float = stageHeight / height;
+			zoom = Math.min(ratioX, ratioY);
+			widthGame = Math.ceil(stageWidth / zoom);
+			heightGame = Math.ceil(stageHeight / zoom);
+		}
+
+		FlxG.autoPause = true;
+		FlxG.mouse.visible = true;
+
+		addChild(new FlxGame(widthGame, heightGame, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
+
+		fpsVar = new FPS(10, 3, 0xFFFFFF);
+		addChild(fpsVar);
 	}
 }

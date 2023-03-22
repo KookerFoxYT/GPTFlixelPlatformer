@@ -4,6 +4,8 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.addons.effects.FlxTrail;
 
+using StringTools;
+
 enum PowerUpType {
 	JUMP;
 	SPEED;

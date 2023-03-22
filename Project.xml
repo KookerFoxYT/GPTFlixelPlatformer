@@ -2,12 +2,10 @@
 <project>
 
     <!-- Basic project information -->
-    <meta title="Platformer Example Made with ChatGPT"
-        package="com.kookerfoxyt.platformergptexample" version="0.1.0" />
+    <meta title="Platformer Example Made with ChatGPT" file="GPTPlatformer" package="com.kookerfoxyt.platformergptexample" version="0.1.0" />
 
     <!--Desktop-->
-    <!--These
-    window settings apply to all targets-->
+    <!--These window settings apply to all targets-->
     <window width="320" height="240" fps="120" hardware="true" vsync="true" background="0x0052f0f0" />
 
     <window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false" />

@@ -1,3 +1,11 @@
+import flixel.FlxG;
+import flixel.text.FlxText;
+import flixel.ui.FlxButton;
+import flixel.FlxState;
+import flixel.util.FlxSave;
+
+using StringTools;
+
 class OptionsState extends FlxState {
   private var optionsText:FlxText;
   private var backButton:FlxButton;

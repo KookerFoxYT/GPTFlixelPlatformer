@@ -2,6 +2,8 @@ import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
 import flixel.util.FlxPoint;
 
+using StringTools;
+
 class Level {
 	private var tileSize:Int = 16;
 	private var width:Int;

@@ -3,6 +3,8 @@ package;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 
+using StringTools;
+
 class Enemy extends FlxSprite {
 	var moveTimer:FlxTimer;
 	var moveDirection:Int = 1;

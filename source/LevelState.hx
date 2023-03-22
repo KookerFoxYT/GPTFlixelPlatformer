@@ -9,6 +9,8 @@ import flixel.addons.tile.FlxTilemapPlus;
 import flixel.plugin.photonstorm.FlxWeapon;
 import flixel.util.FlxPoint;
 
+using StringTools;
+
 class LevelState extends FlxState {
 	private var player:Player;
 	private var enemies:FlxGroup;
